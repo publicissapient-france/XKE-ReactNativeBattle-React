@@ -31,7 +31,9 @@ Secouer votre smartphone pour afficher la console de dévellopement.
 
 ## Actual App
  
-Maintenant que nous avons initialiser notre projet React Native, commençons le dévelopement de notre application HenriPotierBookshop. 
+Maintenant que nous avons initialiser notre projet React Native, commençons le dévelopement de notre application HenriPotierBookshop.
+
+![Alt text](/img/Exercice.png?raw=true "Screenshot book with shadow")
 
 ### Mocking data
 
@@ -101,7 +103,7 @@ Et enfin, nous devons appliquer ce style au composant Image:
 
 Appuyez sur `⌘ + R` /` Recharger JS` et l'image devrait s'afficher maintenant.
 
-![Alt text](/img/img.jpg?raw=true "Screenshot data without style")
+![Alt text](/img/BookWithoutStyle?raw=true "Screenshot data without style")
 
 ### Add some styling
 
@@ -243,7 +245,7 @@ Exemple de code spécifique, utilisation de Platform
 
 Go ahead and press `⌘+R` / `Reload JS` and you'll see the updated view.
 
-![Alt text](/img/img.jpg?raw=true "Screenshot book with shadow")
+![Alt text](/img/BookWithStyle?raw=true "Screenshot book with shadow")
 
 ### Fetching real data
 
@@ -331,11 +333,6 @@ Modifiez maintenant la fonction de rendu pour rendre une vue de chargement si no
 
 Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que la réponse revienne, puis il rendra le premier film qu'il a tiré de la bibliothèque d'henri potier
 
-<div class="tutorial-mock">
-  <img src="img/TutorialSingleFetched.png" />
-  <img src="img/TutorialSingleFetched2.png" />
-</div>
-
 ## FlatList
 
 Modifions maintenant cette application pour rendre toutes ces données dans un composant `FlatList`, plutôt que de simplement rendre le premier film.
@@ -415,10 +412,7 @@ Finally, we add styles for the `ListView` component to the `styles` JS object:
 
 And here's the final result:
 
-<div class="tutorial-mock">
-  <img src="img/TutorialFinal.png" />
-  <img src="img/TutorialFinal2.png" />
-</div>
+![Alt text](/img/Final.png?raw=true "Screenshot book with shadow")
 
 There's still some work to be done to make it a fully functional app such as: adding navigation, search, infinite scroll loading, etc. Check the [Movies Example](https://github.com/facebook/react-native/tree/master/Examples/Movies) to see it all working.
 
