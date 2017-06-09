@@ -29,7 +29,7 @@ create-react-native-app à généré une structure d'application avec le nom de 
 Ouvrer le fichier App.js pour commencé a travailler sur votre application, les changements que vous effectuer vont automatiquement relancer et mettre à jour l'application sur votre téléphone.
 Secouer votre smartphone pour afficher la console de dévellopement. 
 
-## Actual App
+## Actual App
  
 Maintenant que nous avons initialiser notre projet React Native, commençons le dévelopement de notre application HenriPotierBookshop.
 
@@ -103,7 +103,7 @@ Et enfin, nous devons appliquer ce style au composant Image:
 
 Appuyez sur `⌘ + R` /` Recharger JS` et l'image devrait s'afficher maintenant.
 
-![Alt text](/img/BookWithoutStyle?raw=true "Screenshot data without style")
+![Alt text](/img/BookWithoutStyle.png?raw=true "Screenshot data without style")
 
 ### Add some styling
 
@@ -245,7 +245,7 @@ Exemple de code spécifique, utilisation de Platform
 
 Go ahead and press `⌘+R` / `Reload JS` and you'll see the updated view.
 
-![Alt text](/img/BookWithStyle?raw=true "Screenshot book with shadow")
+![Alt text](/img/BookWithStyle.png?raw=true "Screenshot book with shadow")
 
 ### Fetching real data
 
@@ -412,7 +412,7 @@ Finally, we add styles for the `ListView` component to the `styles` JS object:
 
 And here's the final result:
 
-![Alt text](/img/Final.png?raw=true "Screenshot book with shadow")
+<img src="/img/Final.png" width="200">
 
 There's still some work to be done to make it a fully functional app such as: adding navigation, search, infinite scroll loading, etc. Check the [Movies Example](https://github.com/facebook/react-native/tree/master/Examples/Movies) to see it all working.
 
