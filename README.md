@@ -103,7 +103,7 @@ Et enfin, nous devons appliquer ce style au composant Image:
 
 Appuyez sur `⌘ + R` /` Recharger JS` et l'image devrait s'afficher maintenant.
 
-![Alt text](/img/BookWithoutStyle.png?raw=true "Screenshot data without style")
+<img src="/img/BookWithoutStyle.png" width="300">
 
 ### Add some styling
 
@@ -245,7 +245,7 @@ Exemple de code spécifique, utilisation de Platform
 
 Go ahead and press `⌘+R` / `Reload JS` and you'll see the updated view.
 
-![Alt text](/img/BookWithStyle.png?raw=true "Screenshot book with shadow")
+<img src="/img/BookWithStyle.png" width="300">
 
 ### Fetching real data
 
@@ -412,7 +412,7 @@ Finally, we add styles for the `ListView` component to the `styles` JS object:
 
 And here's the final result:
 
-<img src="/img/Final.png" width="200">
+<img src="/img/Final.png" width="300">
 
 There's still some work to be done to make it a fully functional app such as: adding navigation, search, infinite scroll loading, etc. Check the [Movies Example](https://github.com/facebook/react-native/tree/master/Examples/Movies) to see it all working.
 
