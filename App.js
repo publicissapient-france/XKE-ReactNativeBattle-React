@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     })
   },
   descriptionContainer: {
-    padding: 8
+    padding: 8,
   },
   price: {
     paddingTop: 8,

@@ -107,9 +107,10 @@ Appuyez sur `⌘ + R` /` Recharger JS` et l'image devrait s'afficher maintenant.
 
 C'est génial, nous avons rendu nos données. Maintenant, ajoutons-y un peu de style:
 
-![Alt text](/img/img.jpg?raw=true "Book Design")
+![Alt text](/img/Book-Specs.png?raw=true "Book Design")
 
-Ajouter un container a book pour …
+Nous devrons ajouter un autre conteneur afin de définir la dimention et l'arrière plan de la représentation d'un livre.
+Utiliser les propriétés de style `width` et `backgroundColor`.
 
 ```javascript
       return (
@@ -125,9 +126,7 @@ Ajouter un container a book pour …
       );
 ```
 
-supprimer la width de l'image pour qu'elle prenne l'espace disponible
-Au passage on change la couleur de background
-Let's see what the style changes look like:
+Astuce: Supprimer la propriété `width` de l'image pour qu'elle occupe tout l'espace disponible de son parent.
 
 ```javascript
     container: {
@@ -145,11 +144,10 @@ Let's see what the style changes look like:
     },
 ```
 
-Tips maitriser le rendu de l'image avec resizeMode…
- 
- 
+Astuce: Pour maitriser le rendu de l'image on peut aussi utiliser la propriété `resizeMode` du componsant `Image`. 
 
-Ajouter un container pour la description
+
+Ajouter un container autour des textes pour appliquer un peu de style. 
 
 ```javascript
     return (
@@ -173,7 +171,7 @@ Ajouter un container pour la description
     },
 ```
 
-Styliser le prix
+Ajouter le style du prix.
 
 ```javascript
    return (
@@ -191,23 +189,36 @@ Styliser le prix
    );
 ```
 
-We use FlexBox for layout - see [this great guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) to learn more about it.
-alignSelt permet de positionner un élément …
+Nous utilisons FlexBox pour la mise en page - voir [ce super guide] (https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
 
 ```javascript
     price: {
       paddingTop: 8,
       color: '#03a9f4',
-      alignSelf: 'flex-end'
+      alignSelf: 'flex-end',
     },
 ```
 
-Final step, add shadow
-how to make shadow on ios, how to make shadow on android
-[this great guide](https://facebook.github.io/react-native/docs/platform-specific-code.html) to learn more about it.
+Dernière étape, ajouter une ombre !
+
+Nous allons utiliser les propriétes de style `Shadow` de IOS.
+
+```javascript
+    shadowOpacity: 0.1,
+    shadowOffset: {
+      height: 1,
+    },
+    shadowColor: 'black',
+    shadowRadius: 1,
+```
+Pour Android nous utiliseront la propriété `elevation`.
+
+```javascript
+   elevation: 2 //Material Design Card Elevation -> 2 
+```
+
 Exemple de code spécifique, utilisation de Platform
 
-![Alt text](/img/img.jpg?raw=true "Book with shadow")
 
 ```javascript
     bookContainer: {
@@ -228,6 +239,7 @@ Exemple de code spécifique, utilisation de Platform
         })
     },
 ```
+[ce super guide](https://facebook.github.io/react-native/docs/platform-specific-code.html) pour en savoir plus.
 
 Go ahead and press `⌘+R` / `Reload JS` and you'll see the updated view.
 
