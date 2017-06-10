@@ -63,16 +63,16 @@ import {
 Modifiez maintenant la fonction 'render' afin que nous rendions les données mentionnées ci-dessus plutôt que le 'Hello World'.
 
 ```javascript
-  render() {
-    const book = MOCKED_BOOKS_DATA[0];
-    return (
-      <View style={styles.container}>
-        <Image source={{uri: book.cover}}/>
-        <Text>{book.title}</Text>
-        <Text>{book.price}</Text>
-      </View>
-    );
-  }
+render() {
+  const book = MOCKED_BOOKS_DATA[0];
+  return (
+    <View style={styles.container}>
+      <Image source={{uri: book.cover}}/>
+      <Text>{book.title}</Text>
+      <Text>{book.price}</Text>
+    </View>
+  );
+}
 ```
 
 Appuyez sur `⌘ + R` /` Recharger JS` et vous devriez voir affiché "Henri Potier à l'école des sorciers" et "35". Notez que l'image ne s'affiche pas. C'est parce que nous n'avons pas spécifié la largeur et la hauteur de l'image. Cela se fait via des styles. Modifions nos styles avec les valeurs suivantes.
@@ -95,10 +95,10 @@ const styles = StyleSheet.create({
 Et enfin, nous devons appliquer ce style au composant Image:
 
 ```javascript
-        <Image
-          source={{uri: movie.posters.thumbnail}}
-          style={styles.thumbnail}
-        />
+<Image
+  source={{uri: movie.posters.thumbnail}}
+  style={styles.thumbnail}
+/>
 ```
 
 Appuyez sur `⌘ + R` /` Recharger JS` et l'image devrait s'afficher maintenant.
@@ -115,35 +115,35 @@ Nous devrons ajouter un autre conteneur afin de définir la dimention et l'arri�
 Utiliser les propriétés de style `width` et `backgroundColor`.
 
 ```javascript
-      return (
-        <View style={styles.container}>
-          <View style={styles.bookContainer}>
-            <Image
-              style={styles.thumbnail}
-              source={{ uri: book.cover }}/>
-            <Text>{book.title}</Text>
-            <Text>{book.price}</Text>
-          </View>
-        </View>
-      );
+return (
+  <View style={styles.container}>
+    <View style={styles.bookContainer}>
+      <Image
+        style={styles.thumbnail}
+        source={{ uri: book.cover }}/>
+      <Text>{book.title}</Text>
+      <Text>{book.price}</Text>
+    </View>
+  </View>
+);
 ```
 
 Astuce: Supprimer la propriété `width` de l'image pour qu'elle occupe tout l'espace disponible de son parent.
 
 ```javascript
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#e8e8e8',
-    },
-    bookContainer: {
-      width: 150,
-      backgroundColor: '#FFF'
-    },
-    thumbnail: {
-      height: 200,
-    },
+container: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: '#e8e8e8',
+},
+bookContainer: {
+  width: 150,
+  backgroundColor: '#FFF'
+},
+thumbnail: {
+  height: 200,
+},
 ```
 //TODO
 Astuce: Pour maitriser le rendu de l'image on peut aussi utiliser la propriété `resizeMode` du componsant `Image`. 
@@ -152,25 +152,25 @@ Astuce: Pour maitriser le rendu de l'image on peut aussi utiliser la propriété
 Ajouter un container autour des textes pour y appliquer du style. 
 
 ```javascript
-    return (
-      <View style={styles.container}>
-        <View style={styles.bookContainer}>
-          <Image
-            style={styles.thumbnail}
-            source={{ uri: book.cover }}/>
-          <View style={styles.descriptionContainer}>
-            <Text>{book.title}</Text>
-            <Text>{book.price}</Text>
-          </View>
-        </View>
+return (
+  <View style={styles.container}>
+    <View style={styles.bookContainer}>
+      <Image
+        style={styles.thumbnail}
+        source={{ uri: book.cover }}/>
+      <View style={styles.descriptionContainer}>
+        <Text>{book.title}</Text>
+        <Text>{book.price}</Text>
       </View>
-    );
+    </View>
+  </View>
+);
 ```
 
 ```javascript
-    descriptionContainer: {
-      padding: 8
-    },
+descriptionContainer: {
+  padding: 8
+},
 ```
 
 Changer la couleur du prix et aligner le texte à droite.
@@ -178,27 +178,27 @@ Changer la couleur du prix et aligner le texte à droite.
 Nous utilisons FlexBox pour la mise en page - voir [ce super guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
 
 ```javascript
-   return (
-     <View style={styles.container}>
-       <View style={styles.bookContainer}>
-         <Image
-           style={styles.thumbnail}
-           source={{ uri: book.cover }}/>
-         <View style={styles.descriptionContainer}>
-           <Text>{book.title}</Text>
-           <Text style={styles.price}>{book.price}&nbsp;€</Text>
-         </View>
-       </View>
+return (
+ <View style={styles.container}>
+   <View style={styles.bookContainer}>
+     <Image
+       style={styles.thumbnail}
+       source={{ uri: book.cover }}/>
+     <View style={styles.descriptionContainer}>
+       <Text>{book.title}</Text>
+       <Text style={styles.price}>{book.price}&nbsp;€</Text>
      </View>
-   );
+   </View>
+ </View>
+);
 ```
 
 ```javascript
-    price: {
-      paddingTop: 8,
-      color: '#03a9f4',
-      alignSelf: 'flex-end',
-    },
+price: {
+  paddingTop: 8,
+  color: '#03a9f4',
+  alignSelf: 'flex-end',
+},
 ```
 
 Dernière étape, ajouter une ombre !
@@ -206,41 +206,52 @@ Dernière étape, ajouter une ombre !
 Pour appliquer une ombre à notre composant "book", nous allons utiliser les propriétes de style `Shadow` pour la plateforme IOS.
 
 ```javascript
-    shadowOpacity: 0.1,
-    shadowOffset: {
-      height: 1,
-    },
-    shadowColor: 'black',
-    shadowRadius: 1,
+shadowOpacity: 0.1,
+shadowOffset: {
+  height: 1,
+},
+shadowColor: 'black',
+shadowRadius: 1,
 ```
 Et la propriété de style `elevation` pour la plateforme Android.
 
 ```javascript
-   elevation: 2 //Material Design Card Elevation -> 2 
+elevation: 2 //Material Design Card Elevation -> 2 
 ```
 
-Exemple de code spécifique, utilisation de Platform
+Nous allons utiliser l'api `Platform` de React Native pour appliquer des propriétés de style en fonction de l'OS.
 
-[ce super guide](https://facebook.github.io/react-native/docs/platform-specific-code.html) pour en savoir plus.
+[platform-specific-code](https://facebook.github.io/react-native/docs/platform-specific-code.html) pour en savoir plus.
 
 ```javascript
-    bookContainer: {
-        width: 150,
-        backgroundColor: '#FFF',
-        ...Platform.select({
-          ios: {
-            shadowOpacity: 0.1,
-            shadowOffset: {
-              height: 1,
-            },
-            shadowColor: 'black',
-            shadowRadius: 1,
-          },
-          android: {
-            elevation: 2
-          }
-        })
-    },
+import React from 'react';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  Platform
+} from 'react-native';
+```
+
+```javascript
+bookContainer: {
+    width: 150,
+    backgroundColor: '#FFF',
+    ...Platform.select({
+      ios: {
+        shadowOpacity: 0.1,
+        shadowOffset: {
+          height: 1,
+        },
+        shadowColor: 'black',
+        shadowRadius: 1,
+      },
+      android: {
+        elevation: 2
+      }
+    })
+},
 ```
 
 Appuyez sur `⌘ + R` /` Recharger JS` pour observer la mise à jour.
@@ -264,82 +275,84 @@ const REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/mas
 Ajoutez un état initial à notre application afin que nous puissions vérifier `this.state.books === null` pour déterminer si les données de la bibliothèque ont été chargées ou non. Nous pourrons redéfinir ces données avec la réponse de l'api grâce a `this.setState ({books: booksData})`. Ajoutez ce code juste au-dessus de la fonction de rendu dans notre classe React.
 
 ```javascript
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: null,
-    };
-  }
+constructor(props) {
+  super(props);
+  this.state = {
+    books: null,
+  };
+}
 ```
 
 Nous souhaitons requeter l'api juste après la fin du chargement du composant. `ComponentDidMount` est une fonction de `React Component` que React appellera exactement une fois, juste après le chargement du composant.
 
 ```javascript
-  componentDidMount() {
-    this.fetchData();
-  }
+componentDidMount() {
+  this.fetchData();
+}
 ```
 
+//TODO
 Ajoutez maintenant la fonction `fetchData` ci-dessus à notre composant principal. Cette méthode sera responsable de la gestion de l'extraction des données. Tout ce que vous devez faire est d'appeler `this.setState ({books: data})` après avoir résolu la chaîne de promesses car la façon dont React fonctionne est que `setState` déclenche réellement un re-render, puis la fonction de rendu notera que` this.state.books` n'est plus «nul».
 
 ```javascript
-  fetchData() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          books: responseData.books,
-        });
-      })
-  }
+fetchData() {
+  fetch(REQUEST_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        books: responseData.books,
+      });
+    })
+}
 ```
 
-Modifiez maintenant la fonction de rendu pour rendre, si nous n'avons pas donnée, une vue de chargement ou le premier livre de la bibliothèque.
+Modifiez maintenant la fonction de rendu pour rendre, si nous n'avons pas de donnée, une vue de chargement ou le premier livre de la bibliothèque.
 
 ```javascript
-  render() {
-    if (!this.state.books) {
-      return this.renderLoadingView();
-    }
-
-    const book = this.state.books[0];
-    return this.renderBook(book);
+render() {
+  if (!this.state.books) {
+    return this.renderLoadingView();
   }
+    
+  const book = this.state.books[0];
+  return this.renderBook(book);
+}
 
-  renderLoadingView() {
-    return (
-      <View style={styles.container}>
-        <Text>
-          Chargement des livres...
-        </Text>
-      </View>
-    );
-  }
+renderLoadingView() {
+  return (
+    <View style={styles.container}>
+      <Text>
+        Chargement des livres...
+      </Text>
+    </View>
+  );
+}
 
-  renderBook(book) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.bookContainer}>
-          <Image
-            style={styles.thumbnail}
-            source={{ uri: book.cover }}/>
-          <View style={styles.descriptionContainer}>
-            <Text>{book.title}</Text>
-            <Text style={styles.price}>{book.price}&nbsp;€</Text>
-          </View>
+renderBook(book) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.bookContainer}>
+        <Image
+          style={styles.thumbnail}
+          source={{ uri: book.cover }}/>
+        <View style={styles.descriptionContainer}>
+          <Text>{book.title}</Text>
+          <Text style={styles.price}>{book.price}&nbsp;€</Text>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
+}
 ```
 
-Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que l'API réponde, puis il rendra le premier film qu'il a tiré de la bibliothèque d'henri potier.
+Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que l'on recoivent des données de l'API, puis il rendra le premier film qu'il a tiré de la bibliothèque d'henri potier.
 
 ## FlatList
 
 Modifions maintenant cette application pour rendre toutes ces données dans un composant [FlatList](http://facebook.github.io/react-native/docs/flatlist.html), plutôt que de simplement rendre le premier livre.
 
-Pourquoi utiliser «FlatList» est-il mieux que de rendre tous simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous ne affichiez que celles sur l'écran et celles déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
+//TODO
+Pourquoi utiliser «FlatList» est-il mieux que de rendre tous simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous ne affichiez que celles visible sur l'écran et celles déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
 
 Tout d'abord: ajoutez l'importation `FlatList` en haut du fichier.
 
@@ -354,63 +367,57 @@ import {
 } from 'react-native';
 ```
 
-Modifiez maintenant la fonction de rendu afin qu'une fois que nous avons nos données, il affiche une liste de livre au lieu d'un unique livre.
+Modifiez maintenant la fonction de rendu afin qu'une fois que nous avons nos données, il affiche une liste de livre.
 
 ```javascript
-  render() {
-    if (!this.state.loaded) {
-      return this.renderLoadingView();
-    }
+constructor(props) {
+  super(props);
+  this.state = {
+    books: null,
+    loaded: false,
+  };
+}
 
-    return (
-      <View style={styles.container}>
-          <FlatList
-            data={this.state.books}
-            keyExtractor={(book) => book.isbn}
-            renderItem={this.renderBook}
-          />
-      </View>
-    );
+fetchData() {
+  fetch(REQUEST_URL)
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        books: responseData,
+        loaded: true,
+      });
+    })
+}
+
+render() {
+  if (!this.state.loaded) {
+    return this.renderLoadingView();
   }
-```
 
-```javascript
-  constructor(props) {
-      super(props);
-      this.state = {
-        books: null,
-        loaded: false,
-      };
-  }
-```
-
-And here is the modified `fetchData` method that updates the state accordingly:
-
-```javascript
-  fetchData() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          books: responseData,
-          loaded: true,
-        });
-      })
-  }
-```
-
-Finally, we add styles for the `ListView` component to the `styles` JS object:
-
-```javascript
-  <View style={styles.container}>
+  return (
+    <View style={styles.container}>
       <FlatList
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
         data={this.state.books}
         keyExtractor={(book) => book.isbn}
         renderItem={this.renderBook}
       />
-  </View>
+    </View>
+  );
+}
+```
+
+Enfin, nous ajoutons les propriétés `numColumns` et `showsVerticalScrollIndicator` pour se conformer au design :
+
+```javascript
+<View style={styles.container}>
+  <FlatList
+    numColumns={2}
+    showsVerticalScrollIndicator={false}
+    data={this.state.books}
+    keyExtractor={(book) => book.isbn}
+    renderItem={this.renderBook}
+  />
+</View>
 ```
 
 Et voici le résultat final:
