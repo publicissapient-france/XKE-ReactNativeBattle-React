@@ -37,7 +37,7 @@ Maintenant que nous avons initialiser notre projet React Native, commençons le 
 
 ### Mocking data
 
-Avant d'écrire le code pour récupérer les données réelles sur les livres d'Henri Potier, nous moquerons certaines données afin que nous puissions nos mains sales avec React Native
+Avant d'écrire le code pour récupérer les données réelles sur les livres d'Henri Potier, nous moquerons certaines données afin de prendre rapidement en main React Native.
 Ajouter la constante suivante dans votre fichier App.js.
 
 ```javascript
@@ -48,7 +48,7 @@ const MOCKED_BOOKS_DATA = [
 
 ### Render a book
 
-Nous allons afficher le titre, le prix et la vignette d'un livre. La vignette étant un composant Image dans React Native, ajoutez Image à la liste des importations React ci-dessous.
+Nous allons afficher le titre, le prix et la vignette d'un livre. La vignette étant un composant Image dans React Native, ajoutez Image à la liste des importations React Native ci-dessous.
 
 ```javascript
 import React from 'react';
@@ -75,7 +75,7 @@ Modifiez maintenant la fonction 'render' afin que nous rendions les données men
   }
 ```
 
-Appuyez sur `⌘ + R` /` Recharger JS` et vous devriez voir "Henri Potier à l'école des sorciers" et "35". Notez que l'image ne s'affiche pas. C'est parce que nous n'avons pas spécifié la largeur et la hauteur de l'image. Cela se fait via des styles. Modifions nos styles avec les valeurs suivantes.
+Appuyez sur `⌘ + R` /` Recharger JS` et vous devriez voir affiché "Henri Potier à l'école des sorciers" et "35". Notez que l'image ne s'affiche pas. C'est parce que nous n'avons pas spécifié la largeur et la hauteur de l'image. Cela se fait via des styles. Modifions nos styles avec les valeurs suivantes.
 
 ```javascript
 const styles = StyleSheet.create({
@@ -145,11 +145,11 @@ Astuce: Supprimer la propriété `width` de l'image pour qu'elle occupe tout l'e
       height: 200,
     },
 ```
-
+//TODO
 Astuce: Pour maitriser le rendu de l'image on peut aussi utiliser la propriété `resizeMode` du componsant `Image`. 
 
 
-Ajouter un container autour des textes pour appliquer un peu de style. 
+Ajouter un container autour des textes pour y appliquer du style. 
 
 ```javascript
     return (
@@ -173,7 +173,9 @@ Ajouter un container autour des textes pour appliquer un peu de style.
     },
 ```
 
-Ajouter le style du prix.
+Changer la couleur du prix et aligner le texte à droite.
+
+Nous utilisons FlexBox pour la mise en page - voir [ce super guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
 
 ```javascript
    return (
@@ -191,8 +193,6 @@ Ajouter le style du prix.
    );
 ```
 
-Nous utilisons FlexBox pour la mise en page - voir [ce super guide] (https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
-
 ```javascript
     price: {
       paddingTop: 8,
@@ -203,7 +203,7 @@ Nous utilisons FlexBox pour la mise en page - voir [ce super guide] (https://css
 
 Dernière étape, ajouter une ombre !
 
-Nous allons utiliser les propriétes de style `Shadow` de IOS.
+Pour appliquer une ombre à notre composant "book", nous allons utiliser les propriétes de style `Shadow` pour la plateforme IOS.
 
 ```javascript
     shadowOpacity: 0.1,
@@ -213,7 +213,7 @@ Nous allons utiliser les propriétes de style `Shadow` de IOS.
     shadowColor: 'black',
     shadowRadius: 1,
 ```
-Pour Android nous utiliseront la propriété `elevation`.
+Et la propriété de style `elevation` pour la plateforme Android.
 
 ```javascript
    elevation: 2 //Material Design Card Elevation -> 2 
@@ -221,6 +221,7 @@ Pour Android nous utiliseront la propriété `elevation`.
 
 Exemple de code spécifique, utilisation de Platform
 
+[ce super guide](https://facebook.github.io/react-native/docs/platform-specific-code.html) pour en savoir plus.
 
 ```javascript
     bookContainer: {
@@ -241,11 +242,14 @@ Exemple de code spécifique, utilisation de Platform
         })
     },
 ```
-[ce super guide](https://facebook.github.io/react-native/docs/platform-specific-code.html) pour en savoir plus.
 
-Go ahead and press `⌘+R` / `Reload JS` and you'll see the updated view.
+Appuyez sur `⌘ + R` /` Recharger JS` pour observer la mise à jour.
 
 <img src="/img/BookWithStyle.png" width="300">
+
+## Extract Book Component
+
+
 
 ### Fetching real data
 
@@ -290,7 +294,7 @@ Ajoutez maintenant la fonction `fetchData` ci-dessus à notre composant principa
   }
 ```
 
-Modifiez maintenant la fonction de rendu pour rendre une vue de chargement si nous n'avons pas de données de films et pour rendre le premier film autrement.
+Modifiez maintenant la fonction de rendu pour rendre, si nous n'avons pas donnée, une vue de chargement ou le premier livre de la bibliothèque.
 
 ```javascript
   render() {
@@ -313,31 +317,29 @@ Modifiez maintenant la fonction de rendu pour rendre une vue de chargement si no
   }
 
   renderBook(book) {
-    render() {
-        return (
-          <View style={styles.container}>
-            <View style={styles.bookContainer}>
-              <Image
-                style={styles.thumbnail}
-                source={{ uri: book.cover }}/>
-              <View style={styles.descriptionContainer}>
-                <Text>{book.title}</Text>
-                <Text style={styles.price}>{book.price}&nbsp;€</Text>
-              </View>
-            </View>
+    return (
+      <View style={styles.container}>
+        <View style={styles.bookContainer}>
+          <Image
+            style={styles.thumbnail}
+            source={{ uri: book.cover }}/>
+          <View style={styles.descriptionContainer}>
+            <Text>{book.title}</Text>
+            <Text style={styles.price}>{book.price}&nbsp;€</Text>
           </View>
-        );
-        }
+        </View>
+      </View>
+    );
   }
 ```
 
-Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que la réponse revienne, puis il rendra le premier film qu'il a tiré de la bibliothèque d'henri potier
+Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que l'API réponde, puis il rendra le premier film qu'il a tiré de la bibliothèque d'henri potier.
 
 ## FlatList
 
-Modifions maintenant cette application pour rendre toutes ces données dans un composant `FlatList`, plutôt que de simplement rendre le premier film.
+Modifions maintenant cette application pour rendre toutes ces données dans un composant [FlatList](http://facebook.github.io/react-native/docs/flatlist.html), plutôt que de simplement rendre le premier livre.
 
-Pourquoi un «FlatList» est-il mieux que de rendre tous ces éléments ou de les mettre dans une «ScrollView»? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous ne affichiez que celles sur l'écran et celles déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
+Pourquoi utiliser «FlatList» est-il mieux que de rendre tous simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous ne affichiez que celles sur l'écran et celles déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
 
 Tout d'abord: ajoutez l'importation `FlatList` en haut du fichier.
 
@@ -352,7 +354,7 @@ import {
 } from 'react-native';
 ```
 
-Modifiez maintenant la fonction de rendu afin qu'une fois que nous avons nos données, il affiche une liste de livre au lieu d'un unique liver.
+Modifiez maintenant la fonction de rendu afin qu'une fois que nous avons nos données, il affiche une liste de livre au lieu d'un unique livre.
 
 ```javascript
   render() {
@@ -361,28 +363,24 @@ Modifiez maintenant la fonction de rendu afin qu'une fois que nous avons nos don
     }
 
     return (
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this.renderMovie}
-        style={styles.listView}
-      />
+      <View style={styles.container}>
+          <FlatList
+            data={this.state.books}
+            keyExtractor={(book) => book.isbn}
+            renderItem={this.renderBook}
+          />
+      </View>
     );
   }
 ```
 
-The `dataSource` is an interface that `ListView` is using to determine which rows have changed over the course of updates.
-
-You'll notice we used `dataSource` from `this.state`. The next step is to add an empty `dataSource` to the object returned by `constructor`. Also, now that we're storing the data in `dataSource`, we should no longer use `this.state.movies` to avoid storing data twice. We can use boolean property of the state (`this.state.loaded`) to tell whether data fetching has finished.
-
 ```javascript
   constructor(props) {
-    super(props);
-    this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-      loaded: false,
-    };
+      super(props);
+      this.state = {
+        books: null,
+        loaded: false,
+      };
   }
 ```
 
@@ -394,28 +392,32 @@ And here is the modified `fetchData` method that updates the state accordingly:
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+          books: responseData,
           loaded: true,
         });
       })
-      .done();
   }
 ```
 
 Finally, we add styles for the `ListView` component to the `styles` JS object:
+
 ```javascript
-  listView: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
-  },
+  <View style={styles.container}>
+      <FlatList
+        numColumns={2}
+        showsVerticalScrollIndicator={false}
+        data={this.state.books}
+        keyExtractor={(book) => book.isbn}
+        renderItem={this.renderBook}
+      />
+  </View>
 ```
 
-And here's the final result:
+Et voici le résultat final:
 
 <img src="/img/Final.png" width="300">
 
-There's still some work to be done to make it a fully functional app such as: adding navigation, search, infinite scroll loading, etc. Check the [Movies Example](https://github.com/facebook/react-native/tree/master/Examples/Movies) to see it all working.
-
+Il reste encore du travail à faire pour en faire une application entièrement fonctionnelle telle que: l'ajout de navigation, la recherche, le chargement de défilement infini, etc. Vérifiez l'[Exemple de film] (https://github.com/facebook/react-native/tree / Master / Exemples / Films) pour voir tout fonctionner.
 
 ### Final source code
 
@@ -531,3 +533,6 @@ const styles = StyleSheet.create({
   },
 });
 ```
+### Bonus
+
+Add header componant
