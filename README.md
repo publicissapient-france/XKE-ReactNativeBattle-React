@@ -285,7 +285,7 @@ componentDidMount() {
 ```
 
 //TODO
-Ajoutez maintenant la fonction `fetchData` ci-dessus à notre composant principal. Cette méthode sera responsable de la gestion de l'extraction des données. Tout ce que vous devez faire est d'appeler `this.setState ({books: data})` après avoir résolu la chaîne de promesses car la façon dont React fonctionne est que `setState` déclenche réellement un re-render, puis la fonction de rendu notera que` this.state.books` n'est plus «nul».
+Ajoutez maintenant la fonction `fetchData` ci-dessus à notre composant principal. Cette méthode sera responsable de la gestion de l'extraction des données. Tout ce que vous devez faire est d'appeler `this.setState ({books: data})` après avoir résolu la chaîne de promesses et selon les principes de React la fonction `setState` va mettre à jour l'état du composant et déclenche un re-render, puis la fonction de rendu notera que` this.state.books` n'est plus «nul».
 
 ```javascript
 fetchData() {
@@ -342,7 +342,7 @@ Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement
 Modifions maintenant cette application pour rendre toutes ces données dans un composant [FlatList](http://facebook.github.io/react-native/docs/flatlist.html), plutôt que de simplement rendre le premier livre.
 
 //TODO
-Pourquoi utiliser «FlatList» est-il mieux que de rendre tous simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous ne affichiez que celles visible sur l'écran et celles déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
+Pourquoi utiliser «FlatList» est-il mieux que de rendre tout simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous n'affichiez que les éléments visible sur l'écran et ceux déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
 
 Tout d'abord: ajoutez l'importation `FlatList` en haut du fichier.
 
@@ -395,8 +395,15 @@ render() {
   );
 }
 ```
-//TODO
-Ooops rien ne s'affiche, debugger l'app, observer la valeur de retour de la methode renderItem et modifier la fonction `renderBook`.
+Ooops les données de l'api ne s'affichent plus...
+
+<img src="/img/EmptyBooks.png" width="300">
+
+Debugger l'application, observer le format du paramètre passé à la callback `renderItem` et modifier la fonction `renderBook`.
+
+Secouer votre smartphone, appuyer sur `⌘ + R` (émulateur IOS) ou `⌘ + M` (émulateur Android) pour faire apparaitre le menu de développement.  
+
+<img src="/img/Debugger.png" width="300">
 
 ```javascript
 renderBook({item}) {
