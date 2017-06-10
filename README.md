@@ -145,9 +145,6 @@ thumbnail: {
   height: 200,
 },
 ```
-//TODO
-Astuce: Pour maitriser le rendu de l'image on peut aussi utiliser la propriété `resizeMode` du componsant `Image`. 
-
 
 Ajouter un container autour des textes pour y appliquer du style. 
 
@@ -258,10 +255,6 @@ Appuyez sur `⌘ + R` /` Recharger JS` pour observer la mise à jour.
 
 <img src="/img/BookWithStyle.png" width="300">
 
-## Extract Book Component
-
-
-
 ### Fetching real data
 
 Ajoutez la constante suivante au haut du fichier (généralement en dessous des importations) pour créer la `REQUEST_URL`s utilisés pour obtenir les données de la bibliothèque henri potier.
@@ -306,14 +299,13 @@ fetchData() {
 }
 ```
 
-Modifiez maintenant la fonction de rendu pour rendre, si nous n'avons pas de donnée, une vue de chargement ou le premier livre de la bibliothèque.
+Modifiez maintenant la fonction de rendu pour rendre, si nous n'avons pas de donnée, une vue de chargement (Afficher: 'Chargement des livres...') ou le premier livre de la bibliothèque.
 
 ```javascript
 render() {
   if (!this.state.books) {
     return this.renderLoadingView();
   }
-    
   const book = this.state.books[0];
   return this.renderBook(book);
 }
@@ -330,17 +322,15 @@ renderLoadingView() {
 
 renderBook(book) {
   return (
-    <View style={styles.container}>
-      <View style={styles.bookContainer}>
-        <Image
-          style={styles.thumbnail}
-          source={{ uri: book.cover }}/>
-        <View style={styles.descriptionContainer}>
-          <Text>{book.title}</Text>
-          <Text style={styles.price}>{book.price}&nbsp;€</Text>
-        </View>
-      </View>
-    </View>
+     <View style={styles.bookContainer}>
+       <Image
+         style={styles.thumbnail}
+         source={{ uri: book.cover }}/>
+       <View style={styles.descriptionContainer}>
+         <Text>{book.title}</Text>
+         <Text style={styles.price}>{book.price}&nbsp;€</Text>
+       </View>
+     </View>
   );
 }
 ```
@@ -405,6 +395,24 @@ render() {
   );
 }
 ```
+//TODO
+Ooops rien ne s'affiche, debugger l'app, observer la valeur de retour de la methode renderItem et modifier la fonction `renderBook`.
+
+```javascript
+renderBook({item}) {
+  return (
+    <View style={styles.bookContainer}>
+      <Image
+        style={styles.thumbnail}
+        source={{ uri: item.cover }}/>
+      <View style={styles.descriptionContainer}>
+        <Text>{item.title}</Text>
+        <Text style={styles.price}>{item.price}&nbsp;€</Text>
+      </View>
+    </View>
+  );
+}
+```
 
 Enfin, nous ajoutons les propriétés `numColumns` et `showsVerticalScrollIndicator` pour se conformer au design :
 
@@ -424,7 +432,7 @@ Et voici le résultat final:
 
 <img src="/img/Final.png" width="300">
 
-Il reste encore du travail à faire pour en faire une application entièrement fonctionnelle telle que: l'ajout de navigation, la recherche, le chargement de défilement infini, etc. Vérifiez l'[Exemple de film] (https://github.com/facebook/react-native/tree / Master / Exemples / Films) pour voir tout fonctionner.
+Il reste encore du travail à faire pour en faire une application entièrement fonctionnelle telle que: l'ajout de navigation, la recherche, le chargement de défilement infini, etc. Visitez l'[exemple d'application de React Native](https://github.com/facebook/react-native/tree / Master / Exemples / Films) pour observer l'implémentation de plus de fonctionnalités.
 
 ### Final source code
 
@@ -540,6 +548,3 @@ const styles = StyleSheet.create({
   },
 });
 ```
-### Bonus
-
-Add header componant
