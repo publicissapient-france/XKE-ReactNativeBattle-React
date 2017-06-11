@@ -284,8 +284,8 @@ componentDidMount() {
 }
 ```
 
-//TODO
-Ajoutez maintenant la fonction `fetchData` ci-dessus à notre composant principal. Cette méthode sera responsable de la gestion de l'extraction des données. Tout ce que vous devez faire est d'appeler `this.setState ({books: data})` après avoir résolu la chaîne de promesses et selon les principes de React la fonction `setState` va mettre à jour l'état du composant et déclenche un re-render, puis la fonction de rendu notera que` this.state.books` n'est plus «nul».
+Ajoutez maintenant la fonction `fetchData` ci-dessus à notre composant principal. Cette méthode sera responsable de la gestion de l'extraction des données. Tout ce que vous devez faire est d'appeler `this.setState ({books: data})` après avoir résolu la chaîne de promesses. 
+Selon les principes de React, la fonction `setState` va mettre à jour l'état du composant et déclenche un re-render, puis la fonction `render` notera que` this.state.books` n'est plus «nul».
 
 ```javascript
 fetchData() {
@@ -341,9 +341,8 @@ Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement
 
 Modifions maintenant cette application pour afficher toutes ces données dans un composant [FlatList](http://facebook.github.io/react-native/docs/flatlist.html), plutôt que d'afficher uniquement le premier livre.
 
-//TODO
 Pourquoi utiliser «FlatList» est-il mieux que d'afficher tout simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? 
-Malgré le fait d'être rapide, l'affichage d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` l'afichage des vues afin que vous n'affichiez que les éléments visibles sur l'écran et ceux déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
+Malgré le fait d'être rapide, l'affichage d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie l'affichage des éléments de la liste afin de gérer uniquement ceux qui sont visibles sur l'écran. Ceux déjà affichés mais hors écran sont supprimés de la hiérarchie de vue native.
 
 Tout d'abord: ajoutez l'importation `FlatList` en haut du fichier.
 
