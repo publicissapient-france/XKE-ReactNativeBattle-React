@@ -200,8 +200,9 @@ price: {
 
 Dernière étape, ajoutez une ombre !
 
-Pour appliquer une ombre à notre composant "book", nous allons utiliser 
-   *les propriétes de style `Shadow` pour la plateforme IOS.
+Pour appliquer une ombre à notre composant "book", nous allons utiliser : 
+
+* les propriétes de style `Shadow` pour la plateforme IOS.
 
 ```javascript
 shadowOpacity: 0.1,
@@ -211,7 +212,8 @@ shadowOffset: {
 shadowColor: 'black',
 shadowRadius: 1,
 ```
-*Et la propriété de style `elevation` pour la plateforme Android.
+
+* Et la propriété de style `elevation` pour la plateforme Android.
 
 ```javascript
 elevation: 2 //Material Design Card Elevation -> 2 
