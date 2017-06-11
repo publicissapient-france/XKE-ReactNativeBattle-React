@@ -21,24 +21,24 @@ Résumé des actions à effectuer:
 
     cd HenriPotierBookshop && npm start
 
-Connecter votre smartphone au même réseau que votre ordinateur. Utiliser l'application Expo pour scanner le QR code depuis votre terminal et selectionner votre projet.
+Connectez votre smartphone au même réseau que votre ordinateur. Utilisez l'application Expo pour scanner le QR code depuis votre terminal et selectionnez votre projet.
 
 ### Hello World
 
-create-react-native-app à généré une structure d'application avec le nom de votre projet, dans notre cas HenriPotierBookshop.
-Ouvrer le fichier App.js pour commencé a travailler sur votre application, les changements que vous effectuer vont automatiquement relancer et mettre à jour l'application sur votre téléphone.
-Secouer votre smartphone pour afficher la console de dévellopement. 
+create-react-native-app a généré une structure d'application avec le nom de votre projet, dans notre cas HenriPotierBookshop.
+Ouvrez le fichier App.js pour commencer à travailler sur votre application, les changements que vous effectuez vont automatiquement relancer et mettre à jour l'application sur votre téléphone.
+Secouez votre smartphone pour afficher la console de dévellopement. 
 
 ## Actual App
  
-Maintenant que nous avons initialiser notre projet React Native, commençons le dévelopement de notre application HenriPotierBookshop.
+Maintenant que nous avons initialisé notre projet React Native, commençons le dévelopement de notre application HenriPotierBookshop.
 
 ![Alt text](/img/Exercice.png?raw=true "Screenshot book with shadow")
 
 ### Mocking data
 
-Avant d'écrire le code pour récupérer les données réelles sur les livres d'Henri Potier, nous moquerons certaines données afin de prendre rapidement en main React Native.
-Ajouter la constante suivante dans votre fichier App.js.
+Avant d'écrire le code pour récupérer les données réelles sur les livres d'Henri Potier, nous "moquerons" certaines données afin de prendre rapidement en main React Native.
+Ajoutez la constante suivante dans votre fichier App.js.
 
 ```javascript
 const MOCKED_BOOKS_DATA = [
@@ -60,7 +60,7 @@ import {
 } from 'react-native';
 ```
 
-Modifiez maintenant la fonction 'render' afin que nous rendions les données mentionnées ci-dessus plutôt que le 'Hello World'.
+Modifiez maintenant la fonction 'render' pour afficher les données mentionnées précédemment plutôt que le 'Hello World'.
 
 ```javascript
 render() {
@@ -75,7 +75,7 @@ render() {
 }
 ```
 
-Appuyez sur `⌘ + R` /` Recharger JS` et vous devriez voir affiché "Henri Potier à l'école des sorciers" et "35". Notez que l'image ne s'affiche pas. C'est parce que nous n'avons pas spécifié la largeur et la hauteur de l'image. Cela se fait via des styles. Modifions nos styles avec les valeurs suivantes.
+Appuyez sur `⌘ + R` /` Recharger JS` et vous devriez voir affiché "Henri Potier à l'école des sorciers" et "35". Notez que l'image ne s'affiche pas. C'est parce que nous n'avons pas spécifié la largeur et la hauteur de l'image. Cela se fait via des styles. Modifions nos styles avec les valeurs suivantes:
 
 ```javascript
 const styles = StyleSheet.create({
@@ -107,12 +107,12 @@ Appuyez sur `⌘ + R` /` Recharger JS` et l'image devrait s'afficher maintenant.
 
 ### Add some styling
 
-C'est génial, nous avons rendu nos données. Maintenant, ajoutons-y un peu de style:
+C'est génial,les données s'affichent!! Maintenant, ajoutons-y un peu de style:
 
 ![Alt text](/img/Book-Specs.png?raw=true "Book Design")
 
-Nous devrons ajouter un autre conteneur afin de définir la dimention et l'arrière plan de la représentation d'un livre.
-Utiliser les propriétés de style `width` et `backgroundColor`.
+Maintenant nous allons ajouter un autre conteneur (composant `View`) afin de définir la dimension et l'arrière plan de la représentation du livre.
+Utilisez les propriétés de style `width` et `backgroundColor`.
 
 ```javascript
 return (
@@ -128,7 +128,7 @@ return (
 );
 ```
 
-Astuce: Supprimer la propriété `width` de l'image pour qu'elle occupe tout l'espace disponible de son parent.
+Astuce: Supprimez la propriété `width` de l'image pour qu'elle occupe tout l'espace disponible de son parent.
 
 ```javascript
 container: {
@@ -146,7 +146,7 @@ thumbnail: {
 },
 ```
 
-Ajouter un container autour des textes pour y appliquer du style. 
+Ajoutez un conteneur autour des textes pour y appliquer du style. 
 
 ```javascript
 return (
@@ -170,7 +170,7 @@ descriptionContainer: {
 },
 ```
 
-Changer la couleur du prix et aligner le texte à droite.
+Changez la couleur du prix et alignez le texte à droite.
 
 Nous utilisons FlexBox pour la mise en page - voir [ce super guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
 
@@ -198,9 +198,10 @@ price: {
 },
 ```
 
-Dernière étape, ajouter une ombre !
+Dernière étape, ajoutez une ombre !
 
-Pour appliquer une ombre à notre composant "book", nous allons utiliser les propriétes de style `Shadow` pour la plateforme IOS.
+Pour appliquer une ombre à notre composant "book", nous allons utiliser 
+   *les propriétes de style `Shadow` pour la plateforme IOS.
 
 ```javascript
 shadowOpacity: 0.1,
@@ -210,13 +211,12 @@ shadowOffset: {
 shadowColor: 'black',
 shadowRadius: 1,
 ```
-Et la propriété de style `elevation` pour la plateforme Android.
+*Et la propriété de style `elevation` pour la plateforme Android.
 
 ```javascript
 elevation: 2 //Material Design Card Elevation -> 2 
 ```
-
-Nous allons utiliser l'api `Platform` de React Native pour appliquer des propriétés de style en fonction de l'OS.
+Pour appliquer des propriétés de style en fonction de l'OS, nous allons utiliser l'api `Platform` de React Native.
 
 [platform-specific-code](https://facebook.github.io/react-native/docs/platform-specific-code.html) pour en savoir plus.
 
@@ -257,7 +257,7 @@ Appuyez sur `⌘ + R` /` Recharger JS` pour observer la mise à jour.
 
 ### Fetching real data
 
-Ajoutez la constante suivante au haut du fichier (généralement en dessous des importations) pour créer la `REQUEST_URL`s utilisés pour obtenir les données de la bibliothèque henri potier.
+Ajoutez la constante suivante en dessous des importations pour définir la `REQUEST_URL` utilisée pour obtenir les données de la bibliothèque Henri Potier.
 
 ```javascript
 
@@ -265,7 +265,7 @@ const REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/mas
 ```
 
 
-Ajoutez un état initial à notre application afin que nous puissions vérifier `this.state.books === null` pour déterminer si les données de la bibliothèque ont été chargées ou non. Nous pourrons redéfinir ces données avec la réponse de l'api grâce a `this.setState ({books: booksData})`. Ajoutez ce code juste au-dessus de la fonction de rendu dans notre classe React.
+Ajoutez un état initial à notre application afin que nous puissions vérifier `this.state.books === null` dans la méthode `render` pour déterminer si les données de la bibliothèque ont été chargées ou non. Nous pourrons redéfinir ces données avec la réponse de l'api grâce  `this.setState ({books: booksData})`. Ajoutez ce code juste au-dessus de la fonction de rendu dans notre classe React.
 
 ```javascript
 constructor(props) {
@@ -299,7 +299,7 @@ fetchData() {
 }
 ```
 
-Modifiez maintenant la fonction de rendu pour rendre, si nous n'avons pas de donnée, une vue de chargement (Afficher: 'Chargement des livres...') ou le premier livre de la bibliothèque.
+Modifiez maintenant la fonction `render` pour afficher le premier livre de la bibliothèque ou une vue de chargement s'il n'y a aucune donnée (Afficher: 'Chargement des livres...').
 
 ```javascript
 render() {
@@ -335,14 +335,15 @@ renderBook(book) {
 }
 ```
 
-Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que l'on recoivent des données de l'API, puis il rendra le premier film qu'il a tiré de la bibliothèque d'henri potier.
+Maintenant, appuyez sur `⌘ + R` /` Reload JS` et vous devriez voir "Chargement des livres ..." jusqu'à ce que l'on recoivent des données de l'API, puis il rendra le premier film qu'il a tiré de la bibliothèque d'Henri Potier.
 
 ## FlatList
 
-Modifions maintenant cette application pour rendre toutes ces données dans un composant [FlatList](http://facebook.github.io/react-native/docs/flatlist.html), plutôt que de simplement rendre le premier livre.
+Modifions maintenant cette application pour afficher toutes ces données dans un composant [FlatList](http://facebook.github.io/react-native/docs/flatlist.html), plutôt que d'afficher uniquement le premier livre.
 
 //TODO
-Pourquoi utiliser «FlatList» est-il mieux que de rendre tout simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? Malgré le fait d'être rapide, le rendu d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` planifie le rendu des vues afin que vous n'affichiez que les éléments visible sur l'écran et ceux déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
+Pourquoi utiliser «FlatList» est-il mieux que d'afficher tout simplement ces éléments via une boucle et de les mettre dans une [ScrollView](http://facebook.github.io/react-native/releases/0.45/docs/scrollview.html) ? 
+Malgré le fait d'être rapide, l'affichage d'une liste éventuellement infinie d'éléments pourrait être lent. `FlatList` l'afichage des vues afin que vous n'affichiez que les éléments visibles sur l'écran et ceux déjà rendues mais hors écran sont supprimées de la hiérarchie de vue native.
 
 Tout d'abord: ajoutez l'importation `FlatList` en haut du fichier.
 
@@ -357,7 +358,7 @@ import {
 } from 'react-native';
 ```
 
-Modifiez maintenant la fonction de rendu afin qu'une fois que nous avons nos données, il affiche une liste de livre.
+Modifiez maintenant la fonction `render` pour qu'une liste de livres s'affiche une fois que nous avons nos données.
 
 ```javascript
 constructor(props) {
@@ -399,9 +400,9 @@ Ooops les données de l'api ne s'affichent plus...
 
 <img src="/img/EmptyBooks.png" width="300">
 
-Debugger l'application, observer le format du paramètre passé à la callback `renderItem` et modifier la fonction `renderBook`.
+Debuggez l'application, observez le format du paramètre passé à la callback `renderItem` et modifiez la fonction `renderBook`.
 
-Secouer votre smartphone, appuyer sur `⌘ + R` (émulateur IOS) ou `⌘ + M` (émulateur Android) pour faire apparaitre le menu de développement.  
+Secouez votre smartphone, appuyez sur `⌘ + R` (émulateur IOS) ou `⌘ + M` (émulateur Android) pour faire apparaitre le menu de développement.  
 
 <img src="/img/Debugger.png" width="300">
 
@@ -421,7 +422,7 @@ renderBook({item}) {
 }
 ```
 
-Enfin, nous ajoutons les propriétés `numColumns` et `showsVerticalScrollIndicator` pour se conformer au design :
+Enfin, ajoutons les propriétés `numColumns` et `showsVerticalScrollIndicator` pour se conformer au design :
 
 ```javascript
 <View style={styles.container}>
