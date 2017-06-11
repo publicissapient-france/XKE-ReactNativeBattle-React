@@ -172,7 +172,7 @@ descriptionContainer: {
 
 Changez la couleur du prix et alignez le texte à droite.
 
-Nous utilisons FlexBox pour la mise en page - voir [ce super guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
+Nous utilisons FlexBox pour la mise en page - voir [FlexBox guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) pour en savoir plus.
 
 ```javascript
 return (
