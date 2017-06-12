@@ -263,7 +263,7 @@ Ajoutez la constante suivante en dessous des importations pour définir la `REQU
 
 ```javascript
 
-const REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+const REQUEST_URL = 'http://henri-potier.xebia.fr/books';
 ```
 
 
