@@ -295,7 +295,7 @@ fetchData() {
     .then((response) => response.json())
     .then((responseData) => {
       this.setState({
-        books: responseData.books,
+        books: responseData,
       });
     })
 }
