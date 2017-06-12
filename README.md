@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   thumbnail: {
-    width: 200,
-    height: 150,
+    width: 150,
+    height: 200,
   },
 });
 ```
@@ -96,7 +96,7 @@ Et enfin, nous devons appliquer ce style au composant Image:
 
 ```javascript
 <Image
-  source={{uri: movie.posters.thumbnail}}
+  source={{uri: book.cover}}
   style={styles.thumbnail}
 />
 ```
